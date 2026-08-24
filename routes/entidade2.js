@@ -5,7 +5,6 @@ const path = require('path');
 
 const dataPath = path.join(__dirname, '../data/emprestimos.json');
 
-// Função auxiliar para ler dados
 function lerDados() {
   try {
     if (fs.existsSync(dataPath)) {
@@ -19,7 +18,6 @@ function lerDados() {
   }
 }
 
-// Função auxiliar para salvar dados
 function salvarDados(dados) {
   try {
     fs.writeFileSync(dataPath, JSON.stringify(dados, null, 2), 'utf8');
@@ -30,7 +28,6 @@ function salvarDados(dados) {
   }
 }
 
-// GET - Obter todos os empréstimos
 router.get('/', (req, res) => {
   try {
     const emprestimos = lerDados();
@@ -40,7 +37,6 @@ router.get('/', (req, res) => {
   }
 });
 
-// GET - Obter empréstimos de um livro específico
 router.get('/livro/:livroId', (req, res) => {
   try {
     const emprestimos = lerDados();
@@ -57,7 +53,6 @@ router.get('/livro/:livroId', (req, res) => {
   }
 });
 
-// GET - Obter empréstimo por ID
 router.get('/:id', (req, res) => {
   try {
     const emprestimos = lerDados();
@@ -79,7 +74,6 @@ router.get('/:id', (req, res) => {
   }
 });
 
-// POST - Criar novo empréstimo
 router.post('/', (req, res) => {
   try {
     const { livroId, nomeLeitor, emailLeitor, dataDevolucaoPrevista } = req.body;
@@ -128,7 +122,6 @@ router.post('/', (req, res) => {
   }
 });
 
-// PUT - Atualizar empréstimo (incluindo devolução)
 router.put('/:id', (req, res) => {
   try {
     const { nomeLeitor, emailLeitor, dataDevolucaoPrevista, dataDevolucaoReal, status } = req.body;
@@ -161,7 +154,6 @@ router.put('/:id', (req, res) => {
   }
 });
 
-// DELETE - Deletar empréstimo
 router.delete('/:id', (req, res) => {
   try {
     const emprestimos = lerDados();
