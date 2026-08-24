@@ -5,7 +5,6 @@ const path = require('path');
 
 const dataPath = path.join(__dirname, '../data/livros.json');
 
-// Função auxiliar para ler dados
 function lerDados() {
   try {
     if (fs.existsSync(dataPath)) {
@@ -19,7 +18,6 @@ function lerDados() {
   }
 }
 
-// Função auxiliar para salvar dados
 function salvarDados(dados) {
   try {
     fs.writeFileSync(dataPath, JSON.stringify(dados, null, 2), 'utf8');
@@ -30,7 +28,6 @@ function salvarDados(dados) {
   }
 }
 
-// GET - Obter todos os livros
 router.get('/', (req, res) => {
   try {
     const livros = lerDados();
@@ -40,7 +37,6 @@ router.get('/', (req, res) => {
   }
 });
 
-// GET - Obter livro por ID
 router.get('/:id', (req, res) => {
   try {
     const livros = lerDados();
@@ -62,7 +58,6 @@ router.get('/:id', (req, res) => {
   }
 });
 
-// POST - Criar novo livro
 router.post('/', (req, res) => {
   try {
     const { titulo, autor, isbn, editora, ano, categoria } = req.body;
@@ -102,7 +97,6 @@ router.post('/', (req, res) => {
   }
 });
 
-// PUT - Atualizar livro
 router.put('/:id', (req, res) => {
   try {
     const { titulo, autor, isbn, editora, ano, categoria, disponivel } = req.body;
@@ -137,7 +131,6 @@ router.put('/:id', (req, res) => {
   }
 });
 
-// DELETE - Deletar livro
 router.delete('/:id', (req, res) => {
   try {
     const livros = lerDados();
